@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -5,6 +7,46 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: Column(
+          // spacing: 10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.text_fields),
+                  border: OutlineInputBorder(),
+                  hintText: "Nome",
+                ),
+              ),
+            TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                  hintText: "E-mail",
+                ),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.password),
+                  border: OutlineInputBorder(),
+                  hintText: "Senha",
+                ),
+              ),
+            ElevatedButton(
+              child: Text("Register"),
+              onPressed: () => Navigator.of(context)..pop()..pushReplacementNamed("/chat"),
+            ),
+            TextButton(
+              child: Text("Back to login"),
+              onPressed: () => Navigator.pop(context),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
