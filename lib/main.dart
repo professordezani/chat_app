@@ -14,5 +14,5 @@ const firebaseConfig = FirebaseOptions(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseConfig);
-  runApp(const ChatApp());
+  runApp(ChatApp());
 }
