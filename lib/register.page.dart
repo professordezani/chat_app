@@ -21,6 +21,7 @@ class RegisterPage extends StatelessWidget {
                   hintText: "Nome",
                 ),
               ),
+              SizedBox(height: 10),
             TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
@@ -28,6 +29,7 @@ class RegisterPage extends StatelessWidget {
                   hintText: "E-mail",
                 ),
               ),
+              SizedBox(height: 10),
               TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -36,6 +38,7 @@ class RegisterPage extends StatelessWidget {
                   hintText: "Senha",
                 ),
               ),
+              SizedBox(height: 10),
             ElevatedButton(
               child: Text("Register"),
               onPressed: () => Navigator.of(context)..pop()..pushReplacementNamed("/chat"),
