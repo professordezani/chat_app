@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -38,15 +37,28 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Flexible(
-            child: ListView(
-              children: [
-                ListTile(
-                  leading: CircleAvatar(),
-                  title: Text("Fulano"),
-                  subtitle: Text("Mensagem..."),
-                  trailing: Text("10/4"),
-                ),                
-              ]
+            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              stream: _db
+                .collection('messages')
+                .orderBy('timestamp', descending: true)
+                .snapshots(),
+              builder: (context, snapshot) {
+
+                if(!snapshot.hasData)
+                  return Text("Carregando...");
+                
+                return ListView(
+                  reverse: true,
+                  children: snapshot.data!.docs.map((doc) => 
+                    ListTile(
+                      leading: CircleAvatar(),
+                      title: Text(doc['user_name']),
+                      subtitle: Text(doc['message']),
+                      trailing: Text(doc['timestamp'].toDate().toString()),
+                    )
+                  ).toList(),
+                );
+              }
             ),
           ),
           Container(
